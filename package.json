@@ -1,0 +1,25 @@
+{
+  "name": "bodyscan",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "db:up": "docker compose --env-file .env -f infra/compose.yaml up -d",
+    "db:down": "docker compose --env-file .env -f infra/compose.yaml down",
+    "db:restart": "docker compose --env-file .env -f infra/compose.yaml restart",
+    "db:logs": "docker compose --env-file .env -f infra/compose.yaml logs -f postgres",
+    "db:status": "docker compose --env-file .env -f infra/compose.yaml ps",
+
+    "db:migrate": "pnpm --filter @bodyscan/api exec prisma migrate dev",
+    "db:generate": "pnpm --filter @bodyscan/api exec prisma generate",
+    "db:studio": "pnpm --filter @bodyscan/api exec prisma studio",
+    "db:shell": "docker exec -it bodyscan-postgres psql -U bodyscan -d bodyscan_db"
+  },
+  "devDependencies": {
+    "turbo": "2.11.7"
+  }
+}
