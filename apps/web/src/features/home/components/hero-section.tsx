@@ -1,226 +1,172 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpen,
-  GraduationCap,
-  MapPin,
-  Stethoscope,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const serviceHighlights = [
-  "Atención especializada",
-  "Profesionales de la salud",
-  "Formación médica",
+type HeroIndexItem = {
+  number: string;
+  title: string;
+  description: string;
+  href: string;
+};
+
+const heroIndex: HeroIndexItem[] = [
+  {
+    number: "01",
+    title: "Especialidades",
+    description: "Áreas médicas de atención.",
+    href: "/especialidades",
+  },
+  {
+    number: "02",
+    title: "Profesionales",
+    description: "Equipo médico de la clínica.",
+    href: "/profesionales",
+  },
+  {
+    number: "03",
+    title: "Academia",
+    description: "Cursos y talleres de formación.",
+    href: "/academia",
+  },
+  {
+    number: "04",
+    title: "Blog",
+    description: "Artículos y noticias publicadas.",
+    href: "/blog",
+  },
 ];
 
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-background">
+    <section
+      aria-labelledby="hero-title"
+      className="relative isolate overflow-hidden bg-background"
+    >
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-secondary/75 to-transparent"
+        className="absolute inset-y-0 right-0 -z-10 hidden w-[55%] bg-gradient-to-l from-brand-light/55 via-brand-light/15 to-transparent lg:block"
       />
       <div
         aria-hidden="true"
-        className="absolute top-20 -left-36 -z-10 size-80 rounded-full bg-brand-light/45 blur-3xl"
+        className="absolute top-0 right-0 -z-10 hidden h-[22rem] w-px bg-brand-turquoise/35 lg:block"
       />
 
-      <div className="mx-auto grid min-h-[calc(100svh-5rem)] w-full max-w-[90rem] items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,0.92fr)_minmax(31rem,1.08fr)] lg:gap-14 lg:px-8 lg:py-24 xl:gap-20">
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex min-h-9 items-center gap-2 rounded-full border border-brand-primary/15 bg-white px-3.5 py-1.5 text-xs font-semibold tracking-[0.08em] text-brand-primary uppercase shadow-[0_8px_30px_rgba(32,104,120,0.07)]">
-            <MapPin aria-hidden="true" className="size-3.5 text-brand-turquoise" />
-            Cochabamba, Bolivia
+      <div className="mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-[90rem] flex-col px-4 pt-12 pb-20 sm:px-6 sm:pt-14 sm:pb-24 lg:px-8 lg:pt-16 lg:pb-28">
+        <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-xs font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+          <div className="flex items-center gap-3">
+            <span aria-hidden="true" className="h-px w-10 bg-brand-turquoise" />
+            <span>Cochabamba · Bolivia</span>
           </div>
+          <span className="text-brand-primary/85">
+            Centro médico y academia
+          </span>
+        </header>
 
-          <h1 className="mt-7 max-w-[13ch] text-[clamp(2.65rem,7.5vw,5.25rem)] leading-[0.98] font-bold tracking-[-0.045em] text-foreground">
-            Salud especializada,
-            <span className="mt-2 block text-brand-primary">
-              conocimiento
-              <span className="relative ml-[0.18em] inline-block text-brand-turquoise">
-                que acompaña.
-                <svg
-                  aria-hidden="true"
-                  className="absolute -bottom-2 left-0 h-2.5 w-full text-brand-turquoise/35"
-                  viewBox="0 0 280 12"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M2 8.5C62 2.8 185 2.6 278 7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth="4"
-                  />
-                </svg>
-              </span>
-            </span>
-          </h1>
-
-          <p className="mt-8 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            Conoce nuestras especialidades, profesionales y servicios. Explora
-            también la academia y los contenidos de formación médica de Body
-            Scan Medical Center.
-          </p>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/especialidades"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-primary px-6 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(32,104,120,0.2)] outline-none transition-[background-color,transform,box-shadow] hover:-translate-y-0.5 hover:bg-brand-primary/92 hover:shadow-[0_16px_34px_rgba(32,104,120,0.25)] focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+        <div className="my-auto grid gap-14 pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:pt-24 xl:gap-14">
+          <div className="min-w-0 lg:col-span-7 lg:pr-6 xl:pr-12">
+            <h1
+              id="hero-title"
+              className="max-w-[13ch] text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.98] font-bold tracking-[-0.04em] text-balance text-foreground"
             >
-              Conocer especialidades
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-              />
-            </Link>
-            <Link
-              href="/academia"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-brand-primary/20 bg-white px-6 text-sm font-semibold text-brand-primary outline-none transition-colors hover:border-brand-turquoise/60 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
-            >
-              <BookOpen aria-hidden="true" className="size-4" />
-              Explorar la academia
-            </Link>
-          </div>
-
-          <ul className="mt-10 flex max-w-xl flex-wrap gap-x-5 gap-y-3 border-t border-border pt-6">
-            {serviceHighlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="flex items-center gap-2 text-xs font-medium text-foreground/70 sm:text-sm"
-              >
+              Atención médica{" "}
+              <span className="relative inline-block whitespace-nowrap text-brand-primary">
+                especializada
                 <span
                   aria-hidden="true"
-                  className="size-1.5 rounded-full bg-brand-turquoise"
+                  className="absolute inset-x-0 -bottom-1 h-[0.14em] origin-left scale-x-0 bg-brand-turquoise motion-safe:animate-[hero-underline_650ms_ease-out_320ms_forwards]"
                 />
-                {highlight}
-              </li>
-            ))}
-          </ul>
-        </div>
+              </span>
+              , cerca de ti.
+            </h1>
 
-        <ClinicalBrandVisual />
+            <div className="mt-10 flex max-w-2xl gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_120ms_both] sm:gap-7">
+              <span
+                aria-hidden="true"
+                className="w-[2px] shrink-0 self-stretch bg-brand-turquoise"
+              />
+              <p className="text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+                Conoce las especialidades, profesionales y servicios de Body
+                Scan Medical Center, junto con nuestra propuesta de formación
+                médica.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-col items-stretch gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_240ms_both] sm:flex-row sm:items-center sm:gap-8">
+              <Link
+                href="/especialidades"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-brand-primary px-7 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(32,104,120,0.22)] outline-none transition-[background-color,transform,box-shadow] hover:-translate-y-0.5 hover:bg-brand-primary/92 hover:shadow-[0_18px_38px_rgba(32,104,120,0.28)] focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+              >
+                Conoce las especialidades
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                />
+              </Link>
+              <Link
+                href="/academia"
+                className="group inline-flex items-center gap-2 self-start text-sm font-semibold text-brand-primary outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 sm:self-center"
+              >
+                <span className="relative">
+                  Explora la academia
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-brand-turquoise transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
+                  />
+                </span>
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="size-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                />
+              </Link>
+            </div>
+          </div>
+
+          <aside
+            aria-label="Secciones del sitio"
+            className="min-w-0 motion-safe:animate-[hero-rise_700ms_ease-out_200ms_both] lg:col-span-5"
+          >
+            <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-background shadow-[0_26px_60px_rgba(23,59,73,0.08)]">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-1.5 bg-brand-turquoise"
+              />
+              <div className="flex items-center justify-between gap-4 border-b border-border/70 px-6 pt-8 pb-5 sm:px-8">
+                <p className="font-heading text-sm font-semibold tracking-[-0.01em] text-foreground sm:text-base">
+                  En este sitio
+                </p>
+                <p className="text-[0.65rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+                  Edición vigente
+                </p>
+              </div>
+              <ol className="divide-y divide-border/70">
+                {heroIndex.map((item) => (
+                  <li key={item.number}>
+                    <Link
+                      href={item.href}
+                      className="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 px-6 py-5 outline-none transition-colors hover:bg-secondary focus-visible:bg-secondary focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-primary sm:grid-cols-[3rem_1fr_auto] sm:px-8"
+                    >
+                      <span className="font-heading text-base font-semibold tracking-[0.08em] text-brand-turquoise">
+                        {item.number}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-heading text-base font-semibold tracking-[-0.01em] text-foreground transition-colors group-hover:text-brand-primary sm:text-lg">
+                          {item.title}
+                        </span>
+                        <span className="mt-1 block text-sm leading-5 text-muted-foreground">
+                          {item.description}
+                        </span>
+                      </span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="size-4 shrink-0 text-brand-primary/55 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-primary motion-reduce:transition-none"
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
-  );
-}
-
-function ClinicalBrandVisual() {
-  return (
-    <div className="relative mx-auto w-full max-w-[42rem] lg:mx-0 lg:justify-self-end">
-      <div
-        aria-hidden="true"
-        className="absolute -inset-5 -z-10 rounded-[2rem] border border-brand-primary/8 bg-brand-light/20 sm:-inset-7"
-      />
-      <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] bg-brand-primary p-5 shadow-[0_32px_80px_rgba(23,59,73,0.22)] sm:min-h-[34rem] sm:p-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-brand-turquoise/28 via-transparent to-foreground/25"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -top-28 -right-24 size-80 rounded-full border border-white/10"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -right-8 -bottom-28 size-72 rounded-full bg-brand-turquoise/15 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:44px_44px]"
-        />
-
-        <div className="relative flex items-center justify-between gap-4">
-          <div className="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 text-xs font-medium text-white/85 backdrop-blur-sm">
-            <span
-              aria-hidden="true"
-              className="size-2 rounded-full bg-brand-turquoise shadow-[0_0_0_4px_rgba(64,184,192,0.14)]"
-            />
-            Body Scan Medical Center
-          </div>
-          <span className="hidden text-[0.65rem] font-semibold tracking-[0.18em] text-white/45 uppercase sm:block">
-            Clínica + Academia
-          </span>
-        </div>
-
-        <div className="relative flex min-h-[20rem] items-center justify-center sm:min-h-[25rem]">
-          <div className="relative flex size-52 items-center justify-center sm:size-72">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 rounded-full border border-white/12"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-7 rounded-full border border-dashed border-brand-sky/35"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[4.25rem] rounded-full border border-white/15 bg-white/5 backdrop-blur-sm sm:inset-[5.75rem]"
-            />
-
-            <svg
-              aria-hidden="true"
-              className="relative size-20 sm:size-24"
-              viewBox="0 0 64 64"
-            >
-              <path
-                className="fill-brand-turquoise"
-                d="M32 8c4.4 5.6 6.7 10.1 6.7 13.6 0 3.6-1.6 6.7-4.1 8.5 1.8-2.5 4.9-4.1 8.5-4.1 3.5 0 8 2.3 13.6 6-5.6 3.7-10.1 6-13.6 6-3.6 0-6.7-1.6-8.5-4.1 2.5 1.8 4.1 4.9 4.1 8.5 0 3.5-2.3 8-6.7 13.6-4.4-5.6-6.7-10.1-6.7-13.6 0-3.6 1.6-6.7 4.1-8.5-1.8 2.5-4.9 4.1-8.5 4.1-3.5 0-8-2.3-13.6-6 5.6-3.7 10.1-6 13.6-6 3.6 0 6.7 1.6 8.5 4.1-2.5-1.8-4.1-4.9-4.1-8.5C25.3 18.1 27.6 13.6 32 8Z"
-              />
-              <circle className="fill-white" cx="17" cy="17" r="5" />
-              <circle className="fill-white" cx="47" cy="17" r="5" />
-              <circle className="fill-white" cx="17" cy="47" r="5" />
-              <circle className="fill-white" cx="47" cy="47" r="5" />
-            </svg>
-
-            <VisualLabel
-              className="-top-3 left-1/2 -translate-x-1/2"
-              icon={Stethoscope}
-              label="Clínica"
-            />
-            <VisualLabel
-              className="top-1/2 -right-12 -translate-y-1/2 sm:-right-16"
-              icon={GraduationCap}
-              label="Academia"
-            />
-            <VisualLabel
-              className="-bottom-3 left-1/2 -translate-x-1/2"
-              icon={BookOpen}
-              label="Contenido"
-            />
-          </div>
-        </div>
-
-        <div className="relative grid grid-cols-[auto_1fr] items-center gap-4 rounded-2xl border border-white/12 bg-white/9 p-4 backdrop-blur-md sm:p-5">
-          <div className="flex size-11 items-center justify-center rounded-xl bg-white text-brand-primary">
-            <Stethoscope aria-hidden="true" className="size-5" />
-          </div>
-          <div>
-            <p className="font-heading text-sm font-semibold text-white">
-              Un centro, dos formas de cuidar
-            </p>
-            <p className="mt-1 text-xs leading-5 text-white/62">
-              Atención médica e iniciativas de formación para profesionales.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-type VisualLabelProps = {
-  className: string;
-  icon: typeof Stethoscope;
-  label: string;
-};
-
-function VisualLabel({ className, icon: Icon, label }: VisualLabelProps) {
-  return (
-    <div
-      className={`absolute inline-flex min-h-10 items-center gap-2 rounded-full border border-white/12 bg-white px-3.5 text-xs font-semibold whitespace-nowrap text-brand-primary shadow-lg ${className}`}
-    >
-      <Icon aria-hidden="true" className="size-3.5 text-brand-turquoise" />
-      {label}
-    </div>
   );
 }
