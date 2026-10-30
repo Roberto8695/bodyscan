@@ -21,6 +21,52 @@ const specialties = [
   { slug: 'neurocirugia', name: 'Neurocirugía', position: 12 },
 ] as const;
 
+const PLACEHOLDER_BIO =
+  'Perfil de ejemplo. Reemplazar con la biografía profesional validada por la clínica.';
+
+const professionals = [
+  {
+    fullName: 'Dra. Ana López Rivas',
+    position: 1,
+    specialtySlugs: ['cardiologia', 'medicina-interna'],
+  },
+  {
+    fullName: 'Dr. Carlos Mendoza Soliz',
+    position: 2,
+    specialtySlugs: ['nefrologia'],
+  },
+  {
+    fullName: 'Dra. Lucía Fernández Vargas',
+    position: 3,
+    specialtySlugs: ['pediatria'],
+  },
+  {
+    fullName: 'Dr. Javier Rojas Camacho',
+    position: 4,
+    specialtySlugs: ['cirugia', 'cirugia-vascular'],
+  },
+  {
+    fullName: 'Dra. María Teresa Salinas',
+    position: 5,
+    specialtySlugs: ['endocrinologia', 'medicina-interna'],
+  },
+  {
+    fullName: 'Dr. Esteban Quiroga Peña',
+    position: 6,
+    specialtySlugs: ['neumologia'],
+  },
+  {
+    fullName: 'Dra. Paola Guzmán Torrico',
+    position: 7,
+    specialtySlugs: ['inmunologia-y-alergologia', 'infectologia'],
+  },
+  {
+    fullName: 'Dr. Rodrigo Vaca Terán',
+    position: 8,
+    specialtySlugs: ['neurocirugia'],
+  },
+] as const;
+
 async function main() {
   const connectionString = process.env.DATABASE_URL;
 
@@ -55,9 +101,79 @@ async function main() {
       );
     }
 
+    const specialtyRows = await database.query<{ id: string; slug: string }>(
+      `SELECT "id", "slug" FROM "specialties"`,
+    );
+    const specialtyIdBySlug = new Map(
+      specialtyRows.rows.map((row) => [row.slug, row.id]),
+    );
+
+    for (const professional of professionals) {
+      const existing = await database.query<{ id: string }>(
+        `SELECT "id" FROM "professionals" WHERE "full_name" = $1 LIMIT 1`,
+        [professional.fullName],
+      );
+
+      let professionalId: string;
+
+      if (existing.rows.length > 0) {
+        professionalId = existing.rows[0].id;
+        await database.query(
+          `
+            UPDATE "professionals"
+            SET "biography" = $2,
+                "is_published" = true,
+                "position" = $3
+            WHERE "id" = $1
+          `,
+          [professionalId, PLACEHOLDER_BIO, professional.position],
+        );
+      } else {
+        professionalId = randomUUID();
+        await database.query(
+          `
+            INSERT INTO "professionals" (
+              "id",
+              "full_name",
+              "biography",
+              "is_published",
+              "position"
+            )
+            VALUES ($1, $2, $3, true, $4)
+          `,
+          [
+            professionalId,
+            professional.fullName,
+            PLACEHOLDER_BIO,
+            professional.position,
+          ],
+        );
+      }
+
+      await database.query(
+        `DELETE FROM "professional_specialties" WHERE "professional_id" = $1`,
+        [professionalId],
+      );
+
+      for (const slug of professional.specialtySlugs) {
+        const specialtyId = specialtyIdBySlug.get(slug);
+        if (!specialtyId) continue;
+        await database.query(
+          `
+            INSERT INTO "professional_specialties" ("professional_id", "specialty_id")
+            VALUES ($1, $2)
+            ON CONFLICT DO NOTHING
+          `,
+          [professionalId, specialtyId],
+        );
+      }
+    }
+
     await database.query('COMMIT');
 
-    console.log(`${specialties.length} especialidades listas.`);
+    console.log(
+      `${specialties.length} especialidades y ${professionals.length} profesionales de ejemplo listos.`,
+    );
   } catch (error) {
     await database.query('ROLLBACK');
     throw error;

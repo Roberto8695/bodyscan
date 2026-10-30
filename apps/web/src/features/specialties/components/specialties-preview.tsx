@@ -39,7 +39,7 @@ export async function SpecialtiesPreview() {
   return (
     <SpecialtiesSection>
       <SpecialtyDirectory count={specialties.length}>
-        <ul className="grid sm:grid-cols-2 sm:gap-x-8 lg:gap-x-12">
+        <ul className="grid grid-cols-1 border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {specialties.map((specialty, index) => (
             <SpecialtyCard
               key={specialty.id}

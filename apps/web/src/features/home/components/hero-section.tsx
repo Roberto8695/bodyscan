@@ -50,7 +50,7 @@ export function HeroSection() {
         className="absolute top-0 right-0 -z-10 hidden h-[22rem] w-px bg-brand-turquoise/35 lg:block"
       />
 
-      <div className="mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-[90rem] flex-col px-4 pt-12 pb-20 sm:px-6 sm:pt-14 sm:pb-24 lg:px-8 lg:pt-16 lg:pb-28">
+      <div className="mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-[90rem] flex-col px-4 pt-12 pb-20 sm:px-6 sm:pt-14 sm:pb-24 lg:px-8 lg:pt-10 lg:pb-16 xl:pt-14 xl:pb-20">
         <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-xs font-semibold tracking-[0.14em] text-muted-foreground uppercase">
           <div className="flex items-center gap-3">
             <span aria-hidden="true" className="h-px w-10 bg-brand-turquoise" />
@@ -61,11 +61,11 @@ export function HeroSection() {
           </span>
         </header>
 
-        <div className="my-auto grid gap-14 pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:pt-24 xl:gap-14">
+        <div className="my-auto grid gap-14 pt-16 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:pt-10 xl:gap-14 xl:pt-16">
           <div className="min-w-0 lg:col-span-7 lg:pr-6 xl:pr-12">
             <h1
               id="hero-title"
-              className="max-w-[13ch] text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.98] font-bold tracking-[-0.04em] text-balance text-foreground"
+              className="max-w-[13ch] text-[clamp(2.5rem,5.4vw,5.25rem)] leading-[0.98] font-bold tracking-[-0.04em] text-balance text-foreground"
             >
               Atención médica{" "}
               <span className="relative inline-block whitespace-nowrap text-brand-primary">
@@ -78,7 +78,7 @@ export function HeroSection() {
               , cerca de ti.
             </h1>
 
-            <div className="mt-10 flex max-w-2xl gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_120ms_both] sm:gap-7">
+            <div className="mt-8 flex max-w-2xl gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_120ms_both] sm:gap-7 lg:mt-6 xl:mt-8">
               <span
                 aria-hidden="true"
                 className="w-[2px] shrink-0 self-stretch bg-brand-turquoise"
@@ -90,7 +90,7 @@ export function HeroSection() {
               </p>
             </div>
 
-            <div className="mt-10 flex flex-col items-stretch gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_240ms_both] sm:flex-row sm:items-center sm:gap-8">
+            <div className="mt-8 flex flex-col items-stretch gap-5 motion-safe:animate-[hero-rise_600ms_ease-out_240ms_both] sm:flex-row sm:items-center sm:gap-8 lg:mt-6 xl:mt-10">
               <Link
                 href="/especialidades"
                 className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-brand-primary px-7 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(32,104,120,0.22)] outline-none transition-[background-color,transform,box-shadow] hover:-translate-y-0.5 hover:bg-brand-primary/92 hover:shadow-[0_18px_38px_rgba(32,104,120,0.28)] focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
